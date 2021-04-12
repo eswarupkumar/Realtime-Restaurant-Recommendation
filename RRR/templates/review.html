@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Review</title>
+  </head>
+  <body>
+    <h1>Review Page</h1>
+    <form action="{% url 'review' %}" method="POST">
+      {% csrf_token %}
+      <h3>Select Restaurant</h3>
+      <select id="size_select" value='nama' name="restaurant">
+        {% for name in data %}
+            <option value="{{ name }}">{{ name }}</option>
+        {% endfor %}
+      </select>
+      <h3>Rating :</h3>
+      <div>
+        <input type="checkbox" name="rating" value='1' onclick="onlyOne(this)" id=""><label>1</label>
+        <input type="checkbox" name="rating" value='2' onclick="onlyOne(this)" id=""><label>2</label>
+        <input type="checkbox" name="rating" value='3' onclick="onlyOne(this)" id=""><label>3</label>
+        <input type="checkbox" name="rating" value='4' onclick="onlyOne(this)" id=""><label>4</label>
+        <input type="checkbox" name="rating" value='5' onclick="onlyOne(this)" id=""><label>5</label>
+      </div>
+      <button type="submit">Submit</button>
+    </form>
+    <script>
+      function onlyOne(checkbox) {
+        var checkboxes = document.getElementsByName('rating')
+        checkboxes.forEach((item) => {
+            if (item !== checkbox) item.checked = false
+        })
+    }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,199 @@
+{%load static%}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+    <!-- <script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script> -->
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6"
+      crossorigin="anonymous"
+    />
+    <!-- JavaScript Bundle with Popper -->
+    <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script> -->
+    <title>Dashboard</title>
+    <style>
+      .top-bar{
+        display: flex;
+        justify-content: space-between;
+      }
+      .dropdown-check-list {
+        display: inline-block;
+      }
+      
+      .dropdown-check-list .anchor,.type,.price {
+        position: relative;
+        cursor: pointer;
+        display: inline-block;
+        padding: 5px 50px 5px 10px;
+        border: 1px solid #ccc;
+      }
+      
+      .dropdown-check-list .anchor:after,.type:after,.price:after {
+        position: absolute;
+        content: "";
+        border-left: 2px solid black;
+        border-top: 2px solid black;
+        padding: 5px;
+        right: 10px;
+        top: 20%;
+        -moz-transform: rotate(-135deg);
+        -ms-transform: rotate(-135deg);
+        -o-transform: rotate(-135deg);
+        -webkit-transform: rotate(-135deg);
+        transform: rotate(-135deg);
+      }
+      
+      .dropdown-check-list .anchor:active:after,.price:active:after {
+        right: 8px;
+        top: 21%;
+      }
+      
+      .dropdown-check-list ul.items {
+        padding: 2px;
+        display: none;
+        margin: 0;
+        border: 1px solid #ccc;
+        border-top: none;
+      }
+      
+      .dropdown-check-list ul.items li {
+        list-style: none;
+      }
+      
+      .dropdown-check-list.visible .anchor {
+        color: #0094ff;
+      }
+      
+      .dropdown-check-list.visible .items {
+        display: block;
+      }
+      .search{
+        display: flex;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="top-bar">
+      <h1>Welcome to RRR !</h1>
+      <a href="/review"><button>Write a review</button></a>
+    </div>
+    <div class="input-group">
+      <form method="POST" action="{% url 'dashboard' %}" class="search">
+        {% csrf_token %}
+        <input
+          type="search"
+          class="form-control rounded"
+          placeholder="Search"
+          aria-label="Search"
+          aria-describedby="search-addon"
+          name="search"
+        />
+        <button>search</button>
+      </form>
+    </div>
+    <div>
+      <form action="{% url 'filter' %}" method="POST">
+        {% csrf_token %}
+        <!-- <div class="dropdown">
+          <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Online order
+          </button>
+          <div class="dropdown-menu" method="POST" name='order' aria-labelledby="dropdownMenuButton">
+            <a class="dropdown-item" href="{% url 'filter' %}" name="">Yes</a>
+            <a class="dropdown-item" href="#">No</a>
+          </div>
+        </div> -->
+        <!-- <div>
+          <input type="checkbox" name="checks[]" value="1" />
+          <input type="checkbox" name="checks[]" value="2" />
+          <input type="checkbox" name="checks[]" value="3" />
+          <input type="checkbox" name="checks[]" value="4" />
+        </div> -->
+        <label for="box1"><input type="radio" name="online_order" value="Yes" id="box1">Online Order</label>
+        <label for="box2"><input type="radio" name="book_table" value="Yes" id="box2">Book Table</label>
+        <div id="list1" class="dropdown-check-list" tabindex="100">
+          <span class="anchor">Ratings</span>
+          <ul class="items">
+            <li><input type="checkbox" name="Rate" value="4.0" />4.0 </li>
+            <li><input type="checkbox" name="Rate" value="3.0"/>3.0</li>
+            <li><input type="checkbox" name="Rate"value="2.0"/>2.0 </li>
+          </ul>
+        </div>
+        <div id="list2" class="dropdown-check-list" tabindex="100">
+          <span class="type">Type</span>
+          <ul class="items">
+            <li><input type="checkbox" name="type" value="Casual Dining" />Casual Dining</li>
+            <li><input type="checkbox" name="type" value="Cafe"/>Cafe</li>
+            <li><input type="checkbox" name="type"value="Quick Bites"/>Quick Bites</li>
+            <li><input type="checkbox" name="type" value="Delivery"/>Delivery</li>
+            <li><input type="checkbox" name="type" value="Dessert Parlor"/>Dessert Parlor</li>
+            <li><input type="checkbox" name="type" value="Bakery"/>Bakery</li>
+            <li><input type="checkbox" name="type" value="Sweet Shop"/>Sweet Shop</li>
+          </ul>
+        </div>
+        <div id="list3" class="dropdown-check-list" tabindex="100">
+          <span class="price">Price (for 2)</span>
+          <ul class="items">
+            <li><input type="checkbox" name="price" value="800" />>=800</li>
+            <li><input type="checkbox" name="price" value="600"/>>=600</li>
+            <li><input type="checkbox" name="price"value="400"/>>=400</li>
+            <li><input type="checkbox" name="price" value="200"/>>=200</li>
+            <li><input type="checkbox" name="price" value="0"/><=200</li>
+          </ul>
+        </div>
+        <button>Done</button>
+      </form>
+
+    </div>
+    <table id="table" class="display" style="width: 100%">
+          {% for header in headers %}
+          <td><h6>{{ header }}</h6></td>
+          {% endfor %}
+
+
+          {% for row in data %} 
+            <tr>
+              {% for item in row %}
+                <td>{{ item }}</td> 
+              {% endfor %}
+
+            </tr>
+            
+          {% endfor %}
+        </tr>
+
+    </table>
+    
+  </body>
+  <script>
+    var checkList = document.getElementById('list1');
+    checkList.getElementsByClassName('anchor')[0].onclick = function(evt) {
+    if (checkList.classList.contains('visible'))
+      checkList.classList.remove('visible');
+    else
+      checkList.classList.add('visible');
+}
+    var type = document.getElementById('list2');
+    type.getElementsByClassName('type')[0].onclick = function(evt) {
+    if (type.classList.contains('visible'))
+      type.classList.remove('visible');
+    else
+      type.classList.add('visible');
+    }
+
+    var price = document.getElementById('list3');
+    price.getElementsByClassName('price')[0].onclick = function(evt) {
+    if (price.classList.contains('visible'))
+      price.classList.remove('visible');
+    else
+      price.classList.add('visible');
+    }
+  </script>
+</html>
