@@ -21,9 +21,44 @@ def home(request):
     return render(request,'home.html')
 
 def login(request):
+    if(request.method=='POST'):
+        email=request.POST['email']
+        password=request.POST['password']
+
+        user_data=pd.read_csv('user_data.csv')
+        for row in range(len(user_data)):
+            if(user_data.loc[row,'email']==email):
+                print(str(user_data.loc[row,'password']))
+                if(user_data.loc[row,'password']==password):
+                    return render(request,'dashborad.html')
+                else:
+                    return render(request,'login.html',{'message':'Please check your password'})
+        
+        
+        return render(request,'login.html',{'Issue':True})
+        
     return render(request,'login.html')
 
 def signup(request):
+    if(request.method=="POST"):
+        name=request.POST['name']
+        email=request.POST['email']
+        password=request.POST['password']
+        cpassword=request.POST['cpassword']
+
+        user_data=pd.read_csv('user_data.csv')
+
+        for row in range(len(user_data)):
+            if(user_data.loc[row,'email']==email):
+                return render(request,'signup.html',{'Issue':True})
+
+        i=len(user_data)+1    
+        user_data.loc[i,'name']=name
+        user_data.loc[i,'email']=email
+        user_data.loc[i,'password']=str(password)
+
+        user_data.to_csv("user_data.csv", index=False)
+
     return render(request,'signup.html')
 
 def dashboard(request):
@@ -135,20 +170,32 @@ def calculate_rating(line):
     csv.to_csv("ratings.csv", index=False)
     
 def res_suggestion(line):
-    csv_res = open('restaurant.csv', 'r')
+    # csv_res = open('restaurant.csv', 'r')
     csv_pd=pd.read_csv('restaurant.csv')
-    reader = csv.DictReader(csv_res)
+    # reader = csv.DictReader(csv_res)
     cuisines=(csv_pd.loc[line]['Cuisines']).split(',')
-    print(cuisines)
-    final=[]
+    # print(cuisines)
+    dic=[]
     for cuisine in cuisines:
-        temp=[]
-        for row in reader:
-            if(cuisine in row['Cuisines']):
-                temp.append(row)
-        final.append(temp)
-    
-    print(final)
+        # for row in reader:
+        #     if(cuisine in row['Cuisines']):
+        #         temp.append(row['Restaurant_Name'])
+        # final.append(temp)
+        for i in range(len(csv_pd)):
+            temp=[]
+            if(cuisine in csv_pd.loc[i,'Cuisines'] and csv_pd.loc[i,'Restaurant_Name'] not in dic and csv_pd.loc[i,'Restaurant_Name']!=csv_pd.loc[line,'Restaurant_Name']):
+                temp.append(csv_pd.loc[i,'Restaurant_Name'])
+                temp.append(csv_pd.loc[i,'Cuisines'])
+                temp.append(csv_pd.loc[i,'Rate'])
+                temp.append(csv_pd.loc[i,'Famou_ Dishes'])
+                temp.append(csv_pd.loc[i,'Approx_cost(for two people)'])
+                temp.append(csv_pd.loc[i,'Address'])
+                dic.append(temp)
+        
+    # print(dic)
+    # print(final)
+    dic.sort(key=lambda x:x[2],reverse=True)
+    return dic
 
 
 def review(request):
@@ -196,7 +243,10 @@ def review(request):
         restaurant_file.loc[line-2,'Rate']=curr_rating
         restaurant_file.to_csv("restaurant.csv", index=False)
 
-        list=res_suggestion(line-2)
+        data=res_suggestion(line-2)
+        # data['data']=final
+        return render(request,'review.html',{'data':final,'sugg':data})
+
 
 
     return render(request,'review.html',{'data':final})

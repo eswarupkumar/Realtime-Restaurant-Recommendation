@@ -1,30 +1,30 @@
 Unnamed: 0,Restaurant_Name,Address,Online Order,Book_Table,Rate,Phone,Restaurant_Type,Famou_ Dishes,Cuisines,Approx_cost(for two people),Type
 0,Jalsa,"942, 21st Main Road, 2nd Stage, Banashankari, Bangalore",Yes,Yes,3.0,"080 42297555
 +91 9743772233",Casual Dining,"Pasta, Lunch Buffet, Masala Papad, Paneer Lajawab, Tomato Shorba, Dum Biryani, Sweet Corn Soup","North Indian, Mughlai, Chinese",800,Buffet
-1,Spice Elephant,"2nd Floor, 80 Feet Road, Near Big Bazaar, 6th Block, Kathriguppe, 3rd Stage, Banashankari, Bangalore",Yes,No,3.75,080 41714161,Casual Dining,"Momos, Lunch Buffet, Chocolate Nirvana, Thai Green Curry, Paneer Tikka, Dum Biryani, Chicken Biryani","Chinese, North Indian, Thai",800,Buffet
+1,Spice Elephant,"2nd Floor, 80 Feet Road, Near Big Bazaar, 6th Block, Kathriguppe, 3rd Stage, Banashankari, Bangalore",Yes,No,3.58,080 41714161,Casual Dining,"Momos, Lunch Buffet, Chocolate Nirvana, Thai Green Curry, Paneer Tikka, Dum Biryani, Chicken Biryani","Chinese, North Indian, Thai",800,Buffet
 2,San Churro Cafe,"1112, Next to KIMS Medical College, 17th Cross, 2nd Stage, Banashankari, Bangalore",Yes,No,3.0,+91 9663487993,"Cafe, Casual Dining","Churros, Cannelloni, Minestrone Soup, Hot Chocolate, Pink Sauce Pasta, Salsa, Veg Supreme Pizza","Cafe, Mexican, Italian",800,Buffet
-3,Addhuri Udupi Bhojana,"1st Floor, Annakuteera, 3rd Stage, Banashankari, Bangalore",No,No,3.0,+91 9620009302,Quick Bites,Masala Dosa,"South Indian, North Indian",300,Buffet
-4,Grand Village,"10, 3rd Floor, Lakshmi Associates, Gandhi Bazaar Main Road, Above Reliance Trends, Basavanagudi, Bangalore",No,No,2.5,"+91 8026612447
+3,Addhuri Udupi Bhojana,"1st Floor, Annakuteera, 3rd Stage, Banashankari, Bangalore",No,No,4.0,+91 9620009302,Quick Bites,Masala Dosa,"South Indian, North Indian",300,Buffet
+4,Grand Village,"10, 3rd Floor, Lakshmi Associates, Gandhi Bazaar Main Road, Above Reliance Trends, Basavanagudi, Bangalore",No,No,3.2,"+91 8026612447
 +91 9901210005",Casual Dining,"Panipuri, Gol Gappe","North Indian, Rajasthani",600,Buffet
-5,Timepass Dinner,"37, 5-1, 4th Floor, Bosco Court, Gandhi Bazaar Main Road, Basavanagudi, Bangalore",Yes,No,3.0,"+91 9980040002
+5,Timepass Dinner,"37, 5-1, 4th Floor, Bosco Court, Gandhi Bazaar Main Road, Basavanagudi, Bangalore",Yes,No,4.0,"+91 9980040002
 +91 9980063005",Casual Dining,"Onion Rings, Pasta, Kadhai Paneer, Salads, Salad, Roti, Jeera Rice",North Indian,600,Buffet
 6,Rosewood International Hotel - Bar & Restaurant,"19/1, New Timberyard Layout, Beside Satellite Bus Stop, Mysore Road, Bangalore",No,No,4.0,"+91 9731716688
 080 26740366",Casual Dining,,"North Indian, South Indian, Andhra, Chinese",800,Buffet
-7,Onesta,"2469, 3rd Floor, 24th Cross, Opposite BDA Complex, 2nd Stage, Banashankari, Bangalore",Yes,Yes,2.67,"080 48653961
+7,Onesta,"2469, 3rd Floor, 24th Cross, Opposite BDA Complex, 2nd Stage, Banashankari, Bangalore",Yes,Yes,3.0,"080 48653961
 080 48655715","Casual Dining, Cafe","Farmhouse Pizza, Chocolate Banana, Virgin Mojito, Pasta, Paneer Tikka, Lime Soda, Prawn Pizza","Pizza, Cafe, Italian",600,Cafes
 8,Penthouse Cafe,"1, 30th Main Road, 3rd Stage, Banashankari, Bangalore",Yes,No,3.0,"+91 8884135549
 +91 9449449316",Cafe,"Pizza, Mocktails, Coffee, Nachos, Salad, Pasta, Sandwiches",ta,700,cafes
-9,Smacznego,"2470, 21 Main Road, 25th Cross, Banashankari, Bangalore",Yes,No,3.0,"+91 9945230807
+9,Smacznego,"2470, 21 Main Road, 25th Cross, Banashankari, Bangalore",Yes,No,4.0,"+91 9945230807
 +91 9743804471",Cafe,"Waffles, Pasta, Coleslaw Sandwich, Choco Waffle, Tacos, Momos, Cheese Nachos","Cafe, Mexican, Italian, Momos, Beverages",550,Cafes
 10,Cafe Shuffle,"941, 3rd FLOOR, 21st Main, 22nd Cross, Banashankari 2nd stage, Opposite to BDA complex, Banashankari",Yes,Yes,3.0,+91 9742166777,Cafe,"Mocktails, Peri Fries, Lasagne, Pizza, Chicken Bbq Wings, Virgin Mojito, Nachos","Cafe, Italian, Continental",600,Cafes
-11,The Coffee Shack,"6th Block, 3rd Stage, Banashankari, Bangalore",Yes,Yes,3.0,+91 9731644212,Cafe,"Coffee, Spaghetti, Pancakes, Nachos, Pasta, Sandwich, Garlic Bread","Cafe, Chinese, Continental, Italian",500,Cafes
-12,Caf-Eleven,"111, Sapphire Toys Building, 100 Feet Ring Road, Banashankari, Bangalore",No,No,2.0,080 49577715,Cafe,"Sandwich, Omelette, Ice Tea, Virgin Mojito, Hot Chocolate, Pasta Arrabiata, Hazelnut Cappuccino","Cafe, Continental",450,Cafes
+11,The Coffee Shack,"6th Block, 3rd Stage, Banashankari, Bangalore",Yes,Yes,4.0,+91 9731644212,Cafe,"Coffee, Spaghetti, Pancakes, Nachos, Pasta, Sandwich, Garlic Bread","Cafe, Chinese, Continental, Italian",500,Cafes
+12,Caf-Eleven,"111, Sapphire Toys Building, 100 Feet Ring Road, Banashankari, Bangalore",No,No,3.33,080 49577715,Cafe,"Sandwich, Omelette, Ice Tea, Virgin Mojito, Hot Chocolate, Pasta Arrabiata, Hazelnut Cappuccino","Cafe, Continental",450,Cafes
 13,San Churro Cafe,"1112, Next to KIMS Medical College, 17th Cross, 2nd Stage, Banashankari, Bangalore",Yes,No,3.0,+91 9663487993,"Cafe, Casual Dining","Churros, Cannelloni, Minestrone Soup, Hot Chocolate, Pink Sauce Pasta, Salsa, Veg Supreme Pizza","Cafe, Mexican, Italian",800,Cafes
-14,Cafe Vivacity,"2303, 21st Cross, K R Road, 2nd Stage, Banashankari, Bangalore",Yes,No,3.0,"080 26768182
+14,Cafe Vivacity,"2303, 21st Cross, K R Road, 2nd Stage, Banashankari, Bangalore",Yes,No,4.0,"080 26768182
 +91 9845704455",Cafe,"Garlic Bread, Burgers, Sandwiches, Pizza, Hot Chocolate Fudge, Waffles, Potato Wedges",Cafe,650,Cafes
-15,Catch-up-ino,"241, 4th Floor, 100 Feet Ring Road, Opposite Kamakya Theatre, Banashankari, Bangalore",Yes,No,3.0,"+91 9972988038
+15,Catch-up-ino,"241, 4th Floor, 100 Feet Ring Road, Opposite Kamakya Theatre, Banashankari, Bangalore",Yes,No,5.0,"+91 9972988038
 +91 9900121238",Cafe,"Momos, Mushroom Bruschettas, Jalapeno Cheeseballs, Pasta, Red Velvet Shake, Red Velvet Milkshake, Maggi","Cafe, Fast Food, Continental, Chinese, Momos",800,Cafes
-16,Kirthi's Biryani,"405, 24th Cross, 9th Main, 2nd Stage, Banashankari, Bangalore",Yes,No,3.0,"080 26711554
+16,Kirthi's Biryani,"405, 24th Cross, 9th Main, 2nd Stage, Banashankari, Bangalore",Yes,No,4.0,"080 26711554
 +91 9741406338",Cafe,"Pasta, Gelato, Garlic Bread, Mojito, Nachos, Paneer Pizza, Mocktails","Chinese, Cafe, Italian",700,Cafes
 17,T3H Cafe,"504, CJ Venkata Das Road, Padmanabhangar, 2nd Stage, Banashankari, Bangalore",No,No,3.0,+91 8884726600,Cafe,"Cheese Maggi, Peri Peri Fries, Pasta Arrabiata","Cafe, Italian, American",300,Cafes
 18,360 Atoms Restaurant And Cafe,"47, 48 &49, 3Rd Floor, 21st Main Road, 2nd Stage, Banashankari, Bangalore",Yes,No,3.0,+91 9880594520,Cafe,,"Cafe, Chinese, Continental, Italian",400,Cafes
@@ -52,16 +52,16 @@ Unnamed: 0,Restaurant_Name,Address,Online Order,Book_Table,Rate,Phone,Restaurant
 35,Chaatimes,"39, 3rd Main,4th Cross, Hanumanth Nagar, Near, Basavanagudi, Bangalore",Yes,No,3.0,+91 8884232233,Quick Bites,"Dabeli, Faluda, Masala Poori, Sandwiches, Tokri Chaat, Pav Bhaji, Dahipuri","Street Food, Fast Food",200,Delivery
 36,McDonald's,"2466, Bhaskar Grand Tower, 24th Cross, Opposite BDA Complex, Banashankari, Bangalore",Yes,No,3.0,"080 66000666
 080 42005285",Quick Bites,"Burgers, Fries, Hot Chocolate","Burger, Fast Food",500,Delivery
-37,Domino's Pizza,"645, 1st Floor, 24th Cross, 24th Main, 2nd Stage, Banashankari, Bangalore",Yes,No,3.0,"080 26710070
+37,Domino's Pizza,"645, 1st Floor, 24th Cross, 24th Main, 2nd Stage, Banashankari, Bangalore",Yes,No,4.15,"080 26710070
 18602100000",Quick Bites,"Pane Pizza, Lava Cake, Pasta, Stuffed Garlic Bread, Chocolava Cake, Tacos","Pizza, Fast Food",800,Delivery
 38,Hotboxit,"2nd Stage, Banashankari, Bangalore",No,No,3.0,"+91 7026677677
 +91 7026577577",Delivery,Prompt Service,"North Indian, Continental, Italian",400,Delivery
 39,Kitchen Garden,"1750, 14th Main, Police Station Road, Kumaraswamy Layout, Bangalore",Yes,No,3.0,080 49652867,Quick Bites,Biryani,"North Indian, Chinese",300,Delivery
-40,Recipe,"1621, 1st Floor, 50 Feet Main Road, Kumaraswamy Layout, Bangalore",Yes,No,3.0,"+91 8043755256
+40,Recipe,"1621, 1st Floor, 50 Feet Main Road, Kumaraswamy Layout, Bangalore",Yes,No,4.0,"+91 8043755256
 +91 9886073774",Casual Dining,"Butter Chicken, Noodles, Thali, Biryani","North Indian, Chinese, Biryani, Rolls",450,Delivery
 41,Tasty Bytes,"1607, Sagar Hospital Road, Near Dayanandasagar College, Kumaraswamy Layout, Bangalore",Yes,No,3.0,"+91 8553317408
 +91 7899687127",Quick Bites,"Paratha, Pasta","North Indian, Chinese, Momos, Rolls",300,Delivery
-42,Petoo,"276, Ground Floor, 100 Feet Outer Ring Road, Banashankari 3rd Stage, Banashankari, Bangalore",No,No,3.0,+91 8026893211,Quick Bites,,North Indian,450,Delivery
+42,Petoo,"276, Ground Floor, 100 Feet Outer Ring Road, Banashankari 3rd Stage, Banashankari, Bangalore",No,No,4.0,+91 8026893211,Quick Bites,,North Indian,450,Delivery
 43,Shree Cool Point,"1514, 4th Cross, 7th Main, RPC layout, 2nd Stage, Vijay Nagar, Bangalore",Yes,No,3.0,+91 9900617124,Quick Bites,,"Fast Food, Street Food, Beverages",150,Delivery
 44,Biryanis And More,"178, Next To Old KEB Office, 8th F Main Road, 24b Cross, 3rd Block, Jayanagar, Bangalore",Yes,No,3.0,"080 48542442
 +91 7337271771",Casual Dining,"Prawn Biryani, Dragon Chicken, Chicken Boneless Biryani, Afghani Biryani, Mughlai Biryani, Paneer Tikka Biryani, Gongura Biryani","Biryani, North Indian, Chinese, Andhra, South Indian",750,Delivery
@@ -80,7 +80,7 @@ Unnamed: 0,Restaurant_Name,Address,Online Order,Book_Table,Rate,Phone,Restaurant
 53,1947,"296, Ram Towers, 100 Feet Ring Road, Banashankari, Bangalore",No,Yes,3.0,"080 26791213
 +91 9739989446",Casual Dining,"Salads, Panneer Butter Masala, Rabri, Gajar Ka Halwa, Manchow Soup, Aam Panna, Tomato Basil Soup","North Indian, Chinese",850,Delivery
 54,Cake of the Day,"295/B, 7th Main Road, 100 Feet Ring Road, 7th Block, 3rd Stage, Banashankari, Bangalore",No,No,3.0,080 22977725,"Bakery, Dessert Parlor",,Bakery,150,Delivery
-55,Kabab Magic,"31, Opposite Vijaya College, RV Road, Basavanagudi, Bangalore",Yes,No,3.0,080 26570381,Quick Bites,"Grape Juice, Chicken Grill, Chicken Tikka Roll, Shawarma Roll, Chicken Shawarama, Biryani Combo, Rolls","North Indian, Kebab, Chinese, Fast Food",400,Delivery
+55,Kabab Magic,"31, Opposite Vijaya College, RV Road, Basavanagudi, Bangalore",Yes,No,4.0,080 26570381,Quick Bites,"Grape Juice, Chicken Grill, Chicken Tikka Roll, Shawarma Roll, Chicken Shawarama, Biryani Combo, Rolls","North Indian, Kebab, Chinese, Fast Food",400,Delivery
 56,Sugar Rush,"186, 11th Main, 4th Cross, Hanumanthnagar, Banashankari, Bangalore",No,No,3.0,+91 9916366551,Bakery,,"Bakery, Desserts",300,Delivery
 57,Burger King,"59/3, Ground & First Floor, West Anjaneya Temple Road, Ward 49, Gandhi Bazaar, Basavanagudi, Bangalore",Yes,No,3.0,091 8147302939,Quick Bites,,"Burger, Fast Food, Beverages",600,Delivery
 58,The Good Bowl,"101, Ground Floor, Manjunatha Complex, 22nd Main Road, 2nd Stage, Banashankari, Bangalore",Yes,No,3.0,+91 8042172269,"Takeaway, Delivery",,"Italian, North Indian, Biryani",500,Delivery
