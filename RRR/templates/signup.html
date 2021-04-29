@@ -13,6 +13,11 @@
       crossorigin="anonymous"
     />
   </head>
+  <style>
+    .row-1,.row-2{
+      display: flex;
+    }
+  </style>
   <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
       <div class="container-fluid">
@@ -38,14 +43,18 @@
       {% csrf_token %} {% if Issue %}
       <p>Email Already Exists</p>
       {% else %} {% endif %}
-      <label>Name :</label>
-      <input type="text" name="name" id="name" />
-      <label>Email :</label>
-      <input type="email" name="email" id="email" />
-      <label>Password :</label>
-      <input type="password" name="password" id="password" />
-      <label>Confirm Password :</label>
-      <input type="password" name="cpassword" id="cpassword" />
+      <div class="row-1">
+        <label>Name :</label>
+        <input type="text" name="name" id="name" />
+        <label>Email :</label>
+        <input type="email" name="email" id="email" />
+      </div>
+      <div class="row-2">
+        <label>Password :</label>
+        <input type="password" name="password" id="password" />
+        <label>Confirm Password :</label>
+        <input type="password" name="cpassword" id="cpassword" />
+      </div>
       <input type="submit" onclick="save_user()" />
       <p>Already have an account? <a href="/login">Click here</a></p>
     </form>

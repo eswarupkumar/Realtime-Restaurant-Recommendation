@@ -94,6 +94,11 @@
     {% else %}
       <p></p>
     {% endif %}
+    {% if msg %}
+    <h3>{{msg}}</h3>
+    {% else %}
+      <p></p>
+    {% endif %}
 
     <div class="row">
     {% for res in sugg %}
