@@ -13,6 +13,80 @@
       crossorigin="anonymous"
     />
   </head>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: sans-serif;
+    }
+    p{
+      color: white;
+    }
+
+    .card {
+      margin-bottom: 20px;
+      border: none;
+    }
+
+    .box {
+      padding: 34px;
+      position: absolute;
+      top: 50%;
+      left: 65%;
+      background: #191919;
+      text-align: center;
+      transition: 0.25s;
+      margin-top: 35px;
+      border-radius: 4%;
+    }
+
+    .box input[type="email"],
+    .box input[type="password"] {
+      border: 0;
+      background: none;
+      display: block;
+      margin: 20px auto;
+      text-align: center;
+      border: 2px solid #3498db;
+      padding: 10px 10px;
+      width: 250px;
+      outline: none;
+      color: white;
+      border-radius: 24px;
+      transition: 0.25s;
+    }
+
+    .box h1 {
+      color: white;
+      text-transform: uppercase;
+      font-weight: 500;
+    }
+
+    .box input[type="email"]:focus,
+    .box input[type="password"]:focus {
+      border-color: #2ecc71;
+    }
+
+    .box input[type="submit"] {
+      border: 0;
+      background: none;
+      display: block;
+      margin: 20px auto;
+      text-align: center;
+      border: 2px solid #2ecc71;
+      padding: 14px 40px;
+      outline: none;
+      color: white;
+      border-radius: 24px;
+      transition: 0.25s;
+      cursor: pointer;
+    }
+
+    .box input[type="submit"]:hover {
+      background: #2ecc71;
+    }
+
+  </style>
   <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
       <div class="container-fluid">
@@ -29,13 +103,12 @@
                 >Sign Up</a
               >
             </li>
-            
           </ul>
         </div>
       </div>
     </nav>
-    <h1>Login Page</h1>
-    <form action="{%url 'login'%}" method="POST">
+    <!-- <h1>Login Page</h1> -->
+    <!-- <form action="{%url 'login'%}" method="POST">
       {% csrf_token %} {% if message %}
       <p>{{message}}</p>
       {% else %} {% endif %} {% if Issue %}
@@ -48,7 +121,34 @@
       <input type="password" name="password" id="password" />
       <input type="submit" onclick="save_user()" />
       <p>Don't have an account? <a href="/signup">Click here</a></p>
-    </form>
+    </form> -->
+
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6">
+          <div class="card">
+            <form
+              action="{%url 'login'%}"
+              method="POST"
+              class="box"
+            >
+              <h1>Login</h1>
+              {% csrf_token %} {% if message %}
+              <p>{{message}}</p>
+              {% else %} {% endif %} {% if Issue %}
+              <p>No account found. <a href="/signup">Click here</a>.</p>
+              {% else %} {% endif %}
+              <!-- <p class="text-muted">Please enter your login and password!</p> -->
+              <input type="email" name="email" placeholder="Email" />
+              <input type="password" name="password" placeholder="Password" />
+              <!-- <a class="forgot text-muted" href="#">Forgot password?</a> -->
+              <input type="submit" onclick="save_user()" />
+              <p>Don't have an account? <a href="/signup">Click here</a></p>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
 
     <script>
       function save_user() {

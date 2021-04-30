@@ -32,7 +32,7 @@ def login(request):
     if(request.method == 'POST'):
         email = request.POST['email']
         password = request.POST['password']
-
+        print("Hit")
         user_data = pd.read_csv('user_data.csv')
         for row in range(len(user_data)):
             if(user_data.loc[row, 'email'] == email):
