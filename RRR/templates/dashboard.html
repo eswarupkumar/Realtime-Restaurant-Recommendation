@@ -7,6 +7,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
     <!-- <script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script> -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <!-- <link href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@1,300&display=swap" rel="stylesheet"> -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu&display=swap" rel="stylesheet">
     <link
       rel="stylesheet"
       href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css"
@@ -90,9 +94,9 @@
   <body>
     <div class="top-bar">
       <h1>Welcome to RRR, {{name}}</h1>
-      <a href="/review"><button>Write a review</button></a>
+      <a href="/review"><button style="margin-top: 5%;" type="button" class="btn btn-outline-primary btn-lg">Submit Rating</button></a>
     </div>
-    <div class="input-group">
+    <!-- <div class="input-group">
       <form method="POST" action="{% url 'dashboard' %}" class="search">
         {% csrf_token %}
         <input
@@ -105,7 +109,12 @@
         />
         <button>search</button>
       </form>
-    </div>
+    </div> -->
+    <form method="POST" action="{% url 'dashboard' %}" class="form-inline my-2 my-lg-0">
+      {% csrf_token %}
+      <input style="margin-left: 1%;" name="search" class="form-control mr-sm-2" type="search" placeholder="Search Restaurant" aria-label="Search">
+      <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Search</button>
+    </form>
     <div>
       <form action="{% url 'filter' %}" method="POST">
         {% csrf_token %}
@@ -132,6 +141,7 @@
             id="box1"
           />Online Order</label
         >
+        <!-- <input class="form-check-input" type="checkbox" value="" id="defaultCheck1"><label>Online Order</label> -->
         <label for="box2"
           ><input type="radio" name="book_table" value="Yes" id="box2" />Book
           Table</label
@@ -182,18 +192,18 @@
             <li><input type="checkbox" name="price" value="0" /><=200</li>
           </ul>
         </div>
-        <button>Done</button>
+        <button type="button" class="btn btn-outline-primary">Done</button>
       </form>
     </div>
     <table
       id="table"
       class="table table-bordered table-hover"
-      style="width: 100%"
+      style="width: 100%;margin-top: 2%;"
     >
       <thead class="thead-dark">
         <tr>
           {% for header in headers %}
-          <th scope="col">{{ header }}</th>
+          <th style="border: solid 2px black;font-family: 'Ubuntu', sans-serif;" scope="col">{{ header }}</th>
           {% endfor %}
         </tr>
       </thead>
@@ -201,7 +211,7 @@
         {% for row in data %}
         <tr>
           {% for item in row %}
-          <td>{{ item }}</td>
+          <td style="border: solid 2px black;font-family: 'Ubuntu', sans-serif;">{{ item }}</td>
           {% endfor %}
         </tr>
 

@@ -23,5 +23,6 @@ urlpatterns = [
     path('signup/',views.signup,name='signup'),
     path('filter/',views.filter,name='filter'),
     path('review/',views.review,name='review'),
+    path('suggestion/',views.suggestion,name='suggestion'),
     path('dashboard/',views.dashboard,name='dashboard')
 ]

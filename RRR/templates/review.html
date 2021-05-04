@@ -11,9 +11,45 @@
     integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6"
     crossorigin="anonymous"
   />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
     <title>Review</title>
   </head>
   <body>
+    {% if showModal %}
+      <div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">So {{user_name}}</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <h3>what would like to have next ?</h3>
+              <form action="{% url 'suggestion' %}" method="POST">
+                {% csrf_token %}
+                <select id="cuisine_select" value="" name="cuisine_select" multiple required>
+                  {% for cuisine in cuisine_list %}
+                  <option value="{{ cuisine }}">{{ cuisine }}</option>
+                {% endfor %}
+                </select>  
+                <div class="modal-footer">
+                  <button type="submit" class="btn btn-secondary" name="default">Close</button>
+                  <button type="submit" class="btn btn-primary" name="choice">Submit</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+      </div>
+      <script>
+        $(window).load(function()
+        {
+            $('#myModal').modal('show');
+        });
+      </script>
+    {% endif %}
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
       <div class="container-fluid">
         <a class="navbar-brand" href="/">RRR</a>
@@ -26,17 +62,6 @@
               >
             </li>
           </ul>
-          <form class="d-flex">
-            <input
-              class="form-control me-2"
-              type="search"
-              placeholder="Search"
-              aria-label="Search"
-            />
-            <button class="btn btn-outline-success" type="submit">
-              Search
-            </button>
-          </form>
         </div>
       </div>
     </nav>
@@ -99,7 +124,7 @@
     {% else %}
       <p></p>
     {% endif %}
-
+    
     <div class="row">
     {% for res in sugg %}
       <div class="col-md-4">
@@ -118,6 +143,9 @@
       {% endfor %}
     </div>
     <script>
+      //var modalToggle = document.getElementById('exampleModal') // relatedTarget
+      //myModal.show(modalToggle)
+
       function onlyOne(checkbox) {
         var checkboxes = document.getElementsByName("rating");
         checkboxes.forEach((item) => {

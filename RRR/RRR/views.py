@@ -9,6 +9,8 @@ from re import search
 import pandas as pd
 
 user_row = []
+restaurant_names=[]
+line=''
 # file=pd.read_csv('ratings.csv')
 # for i in range(len(file)):
 #     file.loc[i,'1']=0
@@ -32,7 +34,6 @@ def login(request):
     if(request.method == 'POST'):
         email = request.POST['email']
         password = request.POST['password']
-        print("Hit")
         user_data = pd.read_csv('user_data.csv')
         for row in range(len(user_data)):
             if(user_data.loc[row, 'email'] == email):
@@ -221,13 +222,12 @@ def res_suggestion(line):
 
 
 def review(request):
-    global user_row
-    final = []
+    global user_row,restaurant_names
     rating_file = open('ratings.csv', 'r')
 
     reader = csv.DictReader(rating_file)
     for row in reader:
-        final.append(row['Restaurant_Name'])
+        restaurant_names.append(row['Restaurant_Name'])
     rating_file.close()
 
     file = pd.read_csv('ratings.csv', sep=',')
@@ -235,7 +235,8 @@ def review(request):
     user_data = pd.read_csv('user_data.csv')
 
     if(request.method == "POST"):
-        
+        global line
+        cuisine_list=[]
         res=request.POST.get('restaurant')
         rate=request.POST.get('rating')
         print("Restaurant Selected is : ",res)
@@ -251,6 +252,8 @@ def review(request):
         info.append(now.strftime("%Y-%m-%d %H:%M:%S"))
         print(info)
         x=(user_data.loc[user_row[2],'history'])
+        #Important- Time limitation
+
         if(str(x) == 'nan'):
             user_data.loc[user_row[2],'history']=info
             user_data.to_csv('user_data.csv',index=False)
@@ -267,7 +270,7 @@ def review(request):
 
             else:
                 print("You can submit only after 3hrs from previous.")
-                return render(request,'review.html',{'data':final,'msg':'You can submit only after 3hrs from previous.'})
+                return render(request,'review.html',{'data':restaurant_names,'msg':'You can submit only after 3hrs from previous.'})
 
         
         for row in reader:
@@ -290,11 +293,53 @@ def review(request):
         restaurant_file.loc[line-2,'Rate']=curr_rating
         restaurant_file.to_csv("restaurant.csv", index=False)
 
-        data=res_suggestion(line-2)
+        restaurant_file = open('restaurant.csv', 'r')
+        reader = csv.DictReader(restaurant_file)
+        cuisine_list=[]
+        for row in reader:
+            temp=row['Cuisines'].split(',')
+            for cuisine in temp:
+                if(cuisine.strip() not in cuisine_list):
+                    cuisine_list.append(cuisine.strip())
+
+        restaurant_file.close()
+        return render(request,'review.html',{'showModal':True,'data':restaurant_names,'cuisine_list':cuisine_list,'user_name':user_row[0]})
+
+        # data=res_suggestion(line-2)
         # data['data']=final
         
-        return render(request,'review.html',{'data':final,'sugg':data})
+        return render(request,'review.html',{'data':restaurant_names})
 
 
 
-    return render(request,'review.html',{'data':final})
+    return render(request,'review.html',{'data':restaurant_names})
+
+def suggestion(request):
+    global restaurant_names,line
+    if(request.method == "POST"):
+            if 'choice' in request.POST:
+                # print("Choice")
+                choices=set(request.POST.getlist('cuisine_select'))
+                print(choices)
+                restaurant_file = open('restaurant.csv', 'r')
+                reader = csv.DictReader(restaurant_file)
+                sugg=[]
+                for each_rest in reader:
+                    temp=[]
+                    cuisine_list=set(map(str.strip, each_rest['Cuisines'].split(',')))
+                    if len(cuisine_list.intersection(choices)) > 0:
+                        temp.append(each_rest['Restaurant_Name'])
+                        temp.append(each_rest['Cuisines'])
+                        temp.append(each_rest['Rate'])
+                        temp.append(each_rest['Famou_ Dishes'])
+                        temp.append(each_rest['Approx_cost(for two people)'])
+                        temp.append(each_rest['Address'])
+                        sugg.append(temp)
+                restaurant_file.close()
+                # print(sugg)
+                sugg.sort(key=lambda x: x[2], reverse=True)
+                return render(request,'review.html',{'data':restaurant_names,'sugg':sugg})
+            elif 'default' in request.POST:
+                print("Default")
+                sugg=res_suggestion(line-2)                                                                                         
+                return render(request,'review.html',{'data':restaurant_names,'sugg':sugg})

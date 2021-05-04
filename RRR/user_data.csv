@@ -1,4 +1,5 @@
 name,email,password,history
 Swarup,eswarupkumar1111@gmail.com,qwerty,[]
-Simran,simranesetty@gmail.com,qwerty,"['Upahar Sagar', '2', '2021-04-29 19:49:44']"
+Simran,simranesetty@gmail.com,qwerty,"['Parimala Sweets', '5', '2021-05-03 12:51:24'],['Chinese Kitchen', '4', '2021-04-30 14:37:36'],['Upahar Sagar', '2', '2021-04-29 19:49:44']"
 Abhi,abhi@gmail.com,qwerty,"['Hotboxit', '5', '2021-04-30 11:50:13']"
+User,user@xyz.com,qwerty,
