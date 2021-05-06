@@ -15,24 +15,140 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
     <title>Review</title>
   </head>
+  <style>
+    body{
+      background-color: #bfe4f1;
+    }
+    .parent-rating{
+      display: flex;
+      justify-content: center;
+    }
+    select {
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      -ms-appearance: none;
+      appearance: none;
+      outline: 0;
+      box-shadow: none;
+      border: 0 !important;
+      background: #2c3e50;
+      background-image: none;
+    }
+    /* Remove IE arrow */
+    select::-ms-expand {
+      display: none;
+    }
+    /* Custom Select */
+    .select {
+      margin: 0 auto;
+      position: relative;
+      display: flex;
+      width: 20em;
+      height: 3em;
+      line-height: 3;
+      background: #2c3e50;
+      overflow: hidden;
+      border-radius: .25em;
+    }
+    select {
+      flex: 1;
+      padding: 0 .5em;
+      color: #fff;
+      cursor: pointer;
+    }
+    /* Arrow */
+    .select::after {
+      content: '\25BC';
+      position: absolute;
+      top: 0;
+      right: 0;
+      padding: 0 1em;
+      background: #34495e;
+      cursor: pointer;
+      pointer-events: none;
+      -webkit-transition: .25s all ease;
+      -o-transition: .25s all ease;
+      transition: .25s all ease;
+    }
+    /* Transition */
+    .select:hover::after {
+      color: #1d73d4;
+    }
+    
+    .container {
+      display: block;
+      position: relative;
+      padding-left: 35px;
+      margin-bottom: 12px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+    
+    /* hide default */
+    .container input {
+      position: absolute;
+      opacity: 0;
+      cursor: pointer;
+      height: 0;
+      width: 0;
+    }
+    
+    /* customizing */
+    .checkmark {
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 25px;
+      width: 25px;
+      background-color: #eee;
+      border-radius: 50%;
+    }
+    
+    .container:hover input ~ .checkmark {
+      background-color: #ccc;
+    }
+    
+    .container input:checked ~ .checkmark {
+      background-color: #6D8A96;
+    }
+    
+    .container .checkmark:after {
+      content: "";
+      position: absolute;
+      display: none;
+      left: 9px;
+      top: 5px;
+      width: 5px;
+      height: 10px;
+      border: solid white;
+      border-width: 0 3px 3px 0;
+      -webkit-transform: rotate(45deg);
+      -ms-transform: rotate(45deg);
+      transform: rotate(45deg);
+    }
+    
+    .container input:checked ~ .checkmark:after {
+      display: block;
+    }
+    .rate{
+      display: flex;
+    }
+  </style>
   <body>
     {% if showModal %}
-      <div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">So {{user_name}}</h5>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-              <h3>what would like to have next ?</h3>
+      <div class="modal fade" id="myModal" >
+        <div class="modal-dialog" >
+          <div class="modal-content" >
+            <div class="modal-body" >
+              <h3>So {{user_name}}, what would like to have next 😋?</h3>
               <form action="{% url 'suggestion' %}" method="POST">
                 {% csrf_token %}
-                <select id="cuisine_select" value="" name="cuisine_select" multiple required>
+                <select id="cuisine_select" value="" name="cuisine_select" multiple>
                   {% for cuisine in cuisine_list %}
                   <option value="{{ cuisine }}">{{ cuisine }}</option>
                 {% endfor %}
-                </select>  
+                </select>
+                <p>Use Ctrl+select to choose more than one option.</p>  
                 <div class="modal-footer">
                   <button type="submit" class="btn btn-secondary" name="default">Close</button>
                   <button type="submit" class="btn btn-primary" name="choice">Submit</button>
@@ -48,6 +164,7 @@
         {
             $('#myModal').modal('show');
         });
+
       </script>
     {% endif %}
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -66,54 +183,69 @@
       </div>
     </nav>
     <h3>Review Page</h3>
-    <form action="{% url 'review' %}" method="POST">
-      {% csrf_token %}
-      <h5>Select Restaurant</h5>
-      <select id="size_select" value="nama" name="restaurant">
-        {% for name in data %}
-        <option value="{{ name }}">{{ name }}</option>
-        {% endfor %}
-      </select>
-      <h5>Rating :</h5>
-      <div>
-        <input
-          type="checkbox"
-          name="rating"
-          value="1"
-          onclick="onlyOne(this)"
-          id=""
-        /><label>1</label>
-        <input
-          type="checkbox"
-          name="rating"
-          value="2"
-          onclick="onlyOne(this)"
-          id=""
-        /><label>2</label>
-        <input
-          type="checkbox"
-          name="rating"
-          value="3"
-          onclick="onlyOne(this)"
-          id=""
-        /><label>3</label>
-        <input
-          type="checkbox"
-          name="rating"
-          value="4"
-          onclick="onlyOne(this)"
-          id=""
-        /><label>4</label>
-        <input
-          type="checkbox"
-          name="rating"
-          value="5"
-          onclick="onlyOne(this)"
-          id=""
-        /><label>5</label>
-      </div>
-      <button type="submit">Submit</button>
-    </form>
+    <div style="text-align:center" class="review-form">
+      <form action="{% url 'review' %}" method="POST">
+        {% csrf_token %}
+        <h5>Select Restaurant</h5>
+        <div class="select">
+          <select id="slct" name="restaurant">
+            {% for name in data %}
+            <option value="{{ name }}">{{ name }}</option>
+            {% endfor %}
+          </select>
+        </div>
+        <!-- <select id="size_select" value="nama" name="restaurant">
+          {% for name in data %}
+          <option value="{{ name }}">{{ name }}</option>
+          {% endfor %}
+        </select> -->
+        <h5>Rating :</h5>
+        <div class="parent-rating">
+          <div class="rate">
+            <label class="container"> 1
+            <input  name="rating"
+            value="1"
+            onclick="onlyOne(this)" type="checkbox">
+            <span class="checkmark"></span>
+            </label>
+            
+            <label class="container">2
+            <input type="checkbox"  name="rating"
+            value="2"
+            onclick="onlyOne(this)">
+            <span class="checkmark"></span>
+            </label>
+            
+            <label class="container">3
+            <input type="checkbox"  name="rating"
+            value="3"
+            onclick="onlyOne(this)">
+            <span class="checkmark"></span>
+            </label>
+              
+            <label class="container">4
+            <input type="checkbox"  name="rating"
+            value="4"
+            onclick="onlyOne(this)">
+            <span class="checkmark"></span>
+            </label>
+              
+            <label class="container">5
+            <input type="checkbox"  name="rating"
+            value="5"
+            onclick="onlyOne(this)">
+            <span class="checkmark"></span>
+            </label>
+            </div>
+        </div>
+        <button
+          type="submit"
+          class="btn btn-secondary btn-md"
+        >
+          Submit Rating
+        </button>
+      </form>
+    </div>
     {% if sugg %}
       <h3>You can also try :</h3>
     {% else %}
@@ -128,7 +260,7 @@
     <div class="row">
     {% for res in sugg %}
       <div class="col-md-4">
-        <div class="card" style="width: 18rem;">
+        <div class="card" style="width: 18rem;border:2px solid black;box-shadow: 2px 0px 12px -1px;transform: scale(0.9, 0.9);">
           <div class="card-body">
             <h5 class="card-title">{{res.0}}</h5>
             <h6 class="card-subtitle mb-2 text-muted">{{res.1}}</h6>

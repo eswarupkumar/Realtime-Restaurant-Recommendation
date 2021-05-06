@@ -89,16 +89,16 @@ def dashboard(request):
     headers = [col for col in reader.fieldnames if col != 'Unnamed: 0']
     for row in reader:
         data = []
-        data.append(row['Restaurant_Name'])
+        data.append(row['Restaurant Name'])
         data.append(row['Address'])
         data.append(row['Online Order'])
-        data.append(row['Book_Table'])
+        data.append(row['Book Table'])
         data.append(row['Rate'])
         data.append(row['Phone'])
-        data.append(row['Restaurant_Type'])
-        data.append(row['Famou_ Dishes'])
+        data.append(row['Restaurant Type'])
+        data.append(row['Famous Dishes'])
         data.append(row['Cuisines'])
-        data.append(row['Approx_cost(for two people)'])
+        data.append(row['Approx cost(for two people)'])
         data.append(row['Type'])
         final.append(data)
     if request.method == 'POST':
@@ -109,18 +109,18 @@ def dashboard(request):
         reader = csv.DictReader(csv_fp)
         final = []
         for row in reader:
-            if(find in row['Restaurant_Name']):
+            if(find in row['Restaurant Name']):
                 data = []
-                data.append(row['Restaurant_Name'])
+                data.append(row['Restaurant Name'])
                 data.append(row['Address'])
                 data.append(row['Online Order'])
-                data.append(row['Book_Table'])
+                data.append(row['Book Table'])
                 data.append(row['Rate'])
                 data.append(row['Phone'])
-                data.append(row['Restaurant_Type'])
-                data.append(row['Famou_ Dishes'])
+                data.append(row['Restaurant Type'])
+                data.append(row['Famous Dishes'])
                 data.append(row['Cuisines'])
-                data.append(row['Approx_cost(for two people)'])
+                data.append(row['Approx cost(for two people)'])
                 data.append(row['Type'])
                 final.append(data)
                 # print(row['Number'])
@@ -161,18 +161,18 @@ def filter(request):
         headers = [col for col in reader.fieldnames if col != 'Unnamed: 0']
         final = []
         for row in reader:
-            if(order in row['Online Order'] and book_table in row['Book_Table'] and float(rate) <= float(row['Rate']) and type in row['Restaurant_Type'] and int(lprice) <= int(row['Approx_cost(for two people)']) < int(uprice)):
+            if(order in row['Online Order'] and book_table in row['Book Table'] and float(rate) <= float(row['Rate']) and type in row['Restaurant Type'] and int(lprice) <= int(row['Approx cost(for two people)']) < int(uprice)):
                 data = []
-                data.append(row['Restaurant_Name'])
+                data.append(row['Restaurant Name'])
                 data.append(row['Address'])
                 data.append(row['Online Order'])
-                data.append(row['Book_Table'])
+                data.append(row['Book Table'])
                 data.append(row['Rate'])
                 data.append(row['Phone'])
-                data.append(row['Restaurant_Type'])
-                data.append(row['Famou_ Dishes'])
+                data.append(row['Restaurant Type'])
+                data.append(row['Famous Dishes'])
                 data.append(row['Cuisines'])
-                data.append(row['Approx_cost(for two people)'])
+                data.append(row['Approx cost(for two people)'])
                 data.append(row['Type'])
                 final.append(data)
 
@@ -206,12 +206,12 @@ def res_suggestion(line):
         # final.append(temp)
         for i in range(len(csv_pd)):
             temp = []
-            if(cuisine in csv_pd.loc[i, 'Cuisines'] and csv_pd.loc[i, 'Restaurant_Name'] not in dic and csv_pd.loc[i, 'Restaurant_Name'] != csv_pd.loc[line, 'Restaurant_Name']):
-                temp.append(csv_pd.loc[i, 'Restaurant_Name'])
+            if(cuisine in csv_pd.loc[i, 'Cuisines'] and csv_pd.loc[i, 'Restaurant Name'] not in dic and csv_pd.loc[i, 'Restaurant Name'] != csv_pd.loc[line, 'Restaurant Name']):
+                temp.append(csv_pd.loc[i, 'Restaurant Name'])
                 temp.append(csv_pd.loc[i, 'Cuisines'])
                 temp.append(csv_pd.loc[i, 'Rate'])
-                temp.append(csv_pd.loc[i, 'Famou_ Dishes'])
-                temp.append(csv_pd.loc[i, 'Approx_cost(for two people)'])
+                temp.append(csv_pd.loc[i, 'Famous Dishes'])
+                temp.append(csv_pd.loc[i, 'Approx cost(for two people)'])
                 temp.append(csv_pd.loc[i, 'Address'])
                 dic.append(temp)
 
@@ -252,27 +252,27 @@ def review(request):
         info.append(now.strftime("%Y-%m-%d %H:%M:%S"))
         print(info)
         x=(user_data.loc[user_row[2],'history'])
-        #Important- Time limitation
+        # Important- Time limitation
 
-        if(str(x) == 'nan'):
-            user_data.loc[user_row[2],'history']=info
-            user_data.to_csv('user_data.csv',index=False)
-        else:
-            # print(user_data.loc[user_row[2],'history'].split(',')[2][2:-2])
-            time=user_data.loc[user_row[2],'history'].split(',')[2][2:-2]
-            # restaurant=user_data.loc[user_row[2],'history'].split(',')[0][2:-1]
-            converted_dt=datetime.strptime(time, '%Y-%m-%d %H:%M:%S')
-            if(converted_dt + timedelta(hours=3)<=datetime.now()):
-                print("You can submit a review.")
-                print(','.join([str(x),str(info)]))
-                user_data.loc[user_row[2],'history']=','.join([str(info),str(x)])
-                user_data.to_csv('user_data.csv',index=False)
+        # if(str(x) == 'nan'):
+        #     user_data.loc[user_row[2],'history']=info
+        #     user_data.to_csv('user_data.csv',index=False)
+        # else:
+        #     # print(user_data.loc[user_row[2],'history'].split(',')[2][2:-2])
+        #     time=user_data.loc[user_row[2],'history'].split(',')[2][2:-2]
+        #     # restaurant=user_data.loc[user_row[2],'history'].split(',')[0][2:-1]
+        #     converted_dt=datetime.strptime(time, '%Y-%m-%d %H:%M:%S')
+        #     if(converted_dt + timedelta(hours=3)<=datetime.now()):
+        #         print("You can submit a review.")
+        #         print(','.join([str(x),str(info)]))
+        #         user_data.loc[user_row[2],'history']=','.join([str(info),str(x)])
+        #         user_data.to_csv('user_data.csv',index=False)
 
-            else:
-                print("You can submit only after 3hrs from previous.")
-                return render(request,'review.html',{'data':restaurant_names,'msg':'You can submit only after 3hrs from previous.'})
+        #     else:
+        #         print("You can submit only after 3hrs from previous.")
+        #         return render(request,'review.html',{'data':restaurant_names,'msg':'You can submit only after 3hrs from previous.'})
 
-        
+        #Updating the rating
         for row in reader:
             if(res==row['Restaurant_Name']):
                 line=reader.line_num
@@ -328,11 +328,11 @@ def suggestion(request):
                     temp=[]
                     cuisine_list=set(map(str.strip, each_rest['Cuisines'].split(',')))
                     if len(cuisine_list.intersection(choices)) > 0:
-                        temp.append(each_rest['Restaurant_Name'])
+                        temp.append(each_rest['Restaurant Name'])
                         temp.append(each_rest['Cuisines'])
                         temp.append(each_rest['Rate'])
-                        temp.append(each_rest['Famou_ Dishes'])
-                        temp.append(each_rest['Approx_cost(for two people)'])
+                        temp.append(each_rest['Famous Dishes'])
+                        temp.append(each_rest['Approx cost(for two people)'])
                         temp.append(each_rest['Address'])
                         sugg.append(temp)
                 restaurant_file.close()
