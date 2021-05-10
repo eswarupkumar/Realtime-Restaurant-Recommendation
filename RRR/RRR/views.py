@@ -59,12 +59,13 @@ def signup(request):
         email = request.POST['email']
         password = request.POST['password']
         cpassword = request.POST['cpassword']
-
+        if(password!=cpassword):
+            return render(request, 'signup.html', {'Issue': "Password didn't match"})
         user_data = pd.read_csv('user_data.csv')
 
         for row in range(len(user_data)):
             if(user_data.loc[row, 'email'] == email):
-                return render(request, 'signup.html', {'Issue': True})
+                return render(request, 'signup.html', {'Issue': 'Email already exists !'})
 
         i = len(user_data)+1
         user_data.loc[i, 'name'] = name
@@ -109,7 +110,7 @@ def dashboard(request):
         reader = csv.DictReader(csv_fp)
         final = []
         for row in reader:
-            if(find in row['Restaurant Name']):
+            if(find in row['Restaurant Name'] or find.lower() in row['Restaurant Name'] or find.capitalize() in row['Restaurant Name']):
                 data = []
                 data.append(row['Restaurant Name'])
                 data.append(row['Address'])
@@ -254,23 +255,23 @@ def review(request):
         x=(user_data.loc[user_row[2],'history'])
         # Important- Time limitation
 
-        # if(str(x) == 'nan'):
-        #     user_data.loc[user_row[2],'history']=info
-        #     user_data.to_csv('user_data.csv',index=False)
-        # else:
-        #     # print(user_data.loc[user_row[2],'history'].split(',')[2][2:-2])
-        #     time=user_data.loc[user_row[2],'history'].split(',')[2][2:-2]
-        #     # restaurant=user_data.loc[user_row[2],'history'].split(',')[0][2:-1]
-        #     converted_dt=datetime.strptime(time, '%Y-%m-%d %H:%M:%S')
-        #     if(converted_dt + timedelta(hours=3)<=datetime.now()):
-        #         print("You can submit a review.")
-        #         print(','.join([str(x),str(info)]))
-        #         user_data.loc[user_row[2],'history']=','.join([str(info),str(x)])
-        #         user_data.to_csv('user_data.csv',index=False)
+        if(str(x) == 'nan'):
+            user_data.loc[user_row[2],'history']=info
+            user_data.to_csv('user_data.csv',index=False)
+        else:
+            # print(user_data.loc[user_row[2],'history'].split(',')[2][2:-2])
+            time=user_data.loc[user_row[2],'history'].split(',')[2][2:-2]
+            # restaurant=user_data.loc[user_row[2],'history'].split(',')[0][2:-1]
+            converted_dt=datetime.strptime(time, '%Y-%m-%d %H:%M:%S')
+            if(converted_dt + timedelta(hours=3)<=datetime.now()):
+                print("You can submit a review.")
+                print(','.join([str(x),str(info)]))
+                user_data.loc[user_row[2],'history']=','.join([str(info),str(x)])
+                user_data.to_csv('user_data.csv',index=False)
 
-        #     else:
-        #         print("You can submit only after 3hrs from previous.")
-        #         return render(request,'review.html',{'data':restaurant_names,'msg':'You can submit only after 3hrs from previous.'})
+            else:
+                print("You can submit only after 3hrs from previous.")
+                return render(request,'review.html',{'data':restaurant_names,'msg':'You can submit only after 3hrs from previous.'})
 
         #Updating the rating
         for row in reader:

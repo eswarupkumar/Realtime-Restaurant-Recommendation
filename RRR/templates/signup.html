@@ -139,7 +139,7 @@
             <form action="{%url 'signup' %}" method="POST" class="box">
               <h1>Signup</h1>
               {% csrf_token %} {% if Issue %}
-              <p>Email Already Exists</p>
+              <p>{{Issue}}</p>
               {% else %} {% endif %}
               <!-- <p class="text-muted">Please enter your login and password!</p> -->
               <div class="row-1">

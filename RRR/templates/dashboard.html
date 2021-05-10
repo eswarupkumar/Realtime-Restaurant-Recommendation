@@ -5,6 +5,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="{%static 'css/radiobutton.css' %}" rel="stylesheet" />
     <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
     <!-- <script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script> -->
     <link rel="preconnect" href="https://fonts.gstatic.com" />
@@ -180,7 +181,7 @@
         </div> -->
         <label for="box1"
           ><input
-            type="radio"
+            type="checkbox"
             name="online_order"
             value="Yes"
             id="box1"
@@ -188,9 +189,23 @@
         >
         <!-- <input class="form-check-input" type="checkbox" value="" id="defaultCheck1"><label>Online Order</label> -->
         <label for="box2"
-          ><input type="radio" name="book_table" value="Yes" id="box2" />Book
+          ><input type="checkbox" name="book_table" value="Yes" id="box2" />Book
           Table</label
         >
+        <!-- <div class="rate">
+          <label class="container"> Book Table 
+            <input  name="rating"
+            value="1"
+            onclick="onlyOne(this)" type="checkbox">
+            <span class="checkmark"></span>
+          </label>
+          <label class="container"> Online Order
+            <input  name="rating"
+            value="1"
+            onclick="onlyOne(this)" type="checkbox">
+            <span class="checkmark"></span>
+          </label>
+        </div> -->
         <div id="list1" class="dropdown-check-list" tabindex="100">
           <span class="anchor">Ratings</span>
           <ul class="items">
